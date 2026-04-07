@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Methods | Monad Docs</title>
+  <link rel="stylesheet" href="1de98341b7e33ab1.css">
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+
+<header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center gap-4 flex-wrap">
+    <a href="index.html" class="flex items-center gap-2 font-semibold text-gray-900 text-base shrink-0">
+      <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-green-500 text-white font-bold text-sm">M</span>
+      Monad Docs
+    </a>
+    <nav class="flex flex-wrap items-center gap-4 ms-4 text-sm">
+      <a href="index.html" class="text-gray-600 hover:text-gray-900">Home</a>
+      <a href="documentation.html" class="text-gray-600 hover:text-gray-900">Documentation</a>
+      <a href="develop.html" class="text-gray-600 hover:text-gray-900">Develop</a>
+      <a href="explorer.html" class="text-gray-600 hover:text-gray-900">Explorer</a>
+      <a href="mainnet.html" class="text-gray-600 hover:text-gray-900">Mainnet</a>
+      <a href="ecosystem.html" class="text-gray-600 hover:text-gray-900">Ecosystem</a>
+      <a href="network.html" class="text-gray-600 hover:text-gray-900">Network</a>
+      <a href="testnet.html" class="text-gray-600 hover:text-gray-900">Testnet</a>
+      <a href="node.html" class="text-gray-600 hover:text-gray-900">Node</a>
+      <a href="rpc.html" class="text-gray-600 hover:text-gray-900">RPC</a>
+      <a href="methods.html" class="text-green-500 font-semibold">Methods</a>
+    </nav>
+    <div class="ms-auto">
+      <a href="https://dashboard.dwellir.com/" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600 transition-colors">
+        Get API Key
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="flex-1">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">JSON-RPC Methods Reference</h1>
+    <p class="text-gray-500 text-lg mb-10 max-w-3xl">
+      Monad supports the standard Ethereum JSON-RPC API plus Monad-specific extensions for mempool inspection.
+      All methods are available via HTTPS and WebSocket transports on both mainnet and testnet.
+    </p>
+
+    <div class="flex flex-col gap-8">
+
+      <section class="bg-white rounded-xl border border-gray-200 p-6">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Standard Ethereum Methods</h2>
+        <p class="text-gray-600 mb-4 text-sm">
+          All standard Ethereum JSON-RPC methods are supported. The following table lists the most commonly
+          used methods when building on Monad.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-gray-50 border-b border-gray-200">
+                <th class="text-left py-2.5 px-3 font-semibold text-gray-700 w-56">Method</th>
+                <th class="text-left py-2.5 px-3 font-semibold text-gray-700">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-100">
+                <td class="py-2.5 px-3 font-mono text-green-700 text-xs">eth_blockNumber</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Returns the current block number. Use to track chain head and confirm transaction inclusion.</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2.5 px-3 font-mono text-green-700 text-xs">eth_getBalance</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Returns the MON balance of an address at a specified block. Supports "latest", "earliest", and numeric block tags.</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2.5 px-3 font-mono text-green-700 text-xs">eth_call</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Executes a read-only message call without creating a transaction. Used for contract view and pure functions.</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2.5 px-3 font-mono text-green-700 text-xs">eth_sendRawTransaction</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Submits a signed, RLP-encoded transaction to the network. Returns the transaction hash immediately upon receipt.</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2.5 px-3 font-mono text-green-700 text-xs">eth_getTransactionReceipt</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Returns the receipt of a mined transaction including status (0 or 1), gas used, and event logs emitted.</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2.5 px-3 font-mono text-green-700 text-xs">eth_getTransactionByHash</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Returns transaction details by hash: sender, receiver, value, input data, nonce, and EIP-1559 gas fields.</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2.5 px-3 font-mono text-green-700 text-xs">eth_getBlockByNumber</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Returns full block data by block number. Set the second parameter to true to include full transaction objects.</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2.5 px-3 font-mono text-green-700 text-xs">eth_getLogs</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Returns logs matching a filter: address, topics, and block range. Essential for event-driven indexing.</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2.5 px-3 font-mono text-green-700 text-xs">eth_estimateGas</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Estimates the gas required for a transaction. Add a 20% buffer before submitting to avoid out-of-gas errors.</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2.5 px-3 font-mono text-green-700 text-xs">eth_gasPrice</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Returns the current gas price. Use maxFeePerGas / maxPriorityFeePerGas for EIP-1559 transactions instead.</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2.5 px-3 font-mono text-green-700 text-xs">eth_chainId</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Returns the chain ID as a hex string. Returns 0x8f (decimal 143) for Monad mainnet.</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2.5 px-3 font-mono text-green-700 text-xs">eth_getCode</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Returns the deployed bytecode of a contract at a given address and block number.</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2.5 px-3 font-mono text-green-700 text-xs">eth_getStorageAt</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Returns the value at a specific storage slot of a contract. Useful for low-level state inspection.</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2.5 px-3 font-mono text-green-700 text-xs">eth_getTransactionCount</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Returns the nonce of an address. Use "pending" tag to include transactions in the local mempool.</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 font-mono text-green-700 text-xs">net_version</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Returns the network ID as a decimal string. Returns "143" for Monad mainnet and "10143" for testnet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl border border-gray-200 p-6">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Monad-Specific Methods</h2>
+        <p class="text-gray-600 mb-4 text-sm">
+          Due to Monad's local mempool design, standard txpool methods are scoped to the local node.
+          Monad exposes additional methods for querying the local pending transaction pool by address or hash.
+          These methods are useful for applications that need to inspect the pending state of a specific address
+          or track the status of a submitted transaction before it is included in a block.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-gray-50 border-b border-gray-200">
+                <th class="text-left py-2.5 px-3 font-semibold text-gray-700 w-56">Method</th>
+                <th class="text-left py-2.5 px-3 font-semibold text-gray-700">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-100">
+                <td class="py-2.5 px-3 font-mono text-purple-700 text-xs">txpool_statusByAddress</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Returns the count of pending and queued transactions in the local mempool for a specific sender address.</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 font-mono text-purple-700 text-xs">txpool_statusByHash</td>
+                <td class="py-2.5 px-3 text-gray-600 text-sm">Returns the status of a specific transaction in the local mempool: pending, queued, or not found (already mined or not submitted to this node).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl border border-gray-200 p-6">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Request Examples</h2>
+        <div class="flex flex-col gap-6">
+
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-2 text-sm">eth_blockNumber &mdash; cURL</h3>
+            <pre class="bg-gray-900 text-green-300 rounded-lg p-4 text-xs overflow-x-auto"><code>curl -X POST https://monad-mainnet.dwellir.com/YOUR_API_KEY \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
+
+# Response
+# {"jsonrpc":"2.0","id":1,"result":"0x1a4b2c"}</code></pre>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-2 text-sm">eth_getBalance &mdash; JavaScript</h3>
+            <pre class="bg-gray-900 text-green-300 rounded-lg p-4 text-xs overflow-x-auto"><code>const response = await fetch(
+  "https://monad-mainnet.dwellir.com/YOUR_API_KEY",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      method: "eth_getBalance",
+      params: ["0xYourAddress", "latest"],
+      id: 1,
+    }),
+  }
+);
+const { result } = await response.json();
+const balanceMON = Number(BigInt(result)) / 1e18;
+console.log(`Balance: ${balanceMON} MON`);</code></pre>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-2 text-sm">txpool_statusByAddress &mdash; cURL</h3>
+            <pre class="bg-gray-900 text-green-300 rounded-lg p-4 text-xs overflow-x-auto"><code>curl -X POST https://monad-mainnet.dwellir.com/YOUR_API_KEY \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "txpool_statusByAddress",
+    "params": ["0xYourAddress"],
+    "id": 1
+  }'
+
+# Response
+# {"jsonrpc":"2.0","id":1,"result":{"pending":"0x2","queued":"0x0"}}</code></pre>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-2 text-sm">eth_getLogs &mdash; JavaScript</h3>
+            <pre class="bg-gray-900 text-green-300 rounded-lg p-4 text-xs overflow-x-auto"><code>// Fetch Transfer events for an ERC-20 contract
+const logs = await provider.getLogs({
+  address: "0xTokenContractAddress",
+  topics: [
+    ethers.id("Transfer(address,address,uint256)"),
+  ],
+  fromBlock: "latest",
+  toBlock: "latest",
+});
+console.log(`Found ${logs.length} Transfer events`);</code></pre>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="bg-gray-900 text-gray-300">
+  <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
+    <div>
+      <div class="flex items-center gap-2 mb-3">
+        <span class="inline-flex items-center justify-center w-7 h-7 rounded-md bg-green-500 text-white font-bold text-xs">M</span>
+        <span class="font-semibold text-white">Monad Docs</span>
+      </div>
+      <p class="text-sm text-gray-400">High-Performance EVM Layer 1 Documentation<br>Powered by <a href="https://www.dwellir.com/" class="text-green-400 hover:underline" target="_blank" rel="noopener noreferrer">Dwellir</a></p>
+    </div>
+    <div class="flex flex-col gap-1 text-sm">
+      <span class="font-medium text-white mb-1">Quick Links</span>
+      <a href="documentation.html" class="hover:text-green-400 transition-colors">Documentation</a>
+      <a href="develop.html" class="hover:text-green-400 transition-colors">Develop</a>
+      <a href="rpc.html" class="hover:text-green-400 transition-colors">RPC Endpoints</a>
+      <a href="methods.html" class="hover:text-green-400 transition-colors">JSON-RPC Methods</a>
+    </div>
+    <div class="flex flex-col gap-1 text-sm">
+      <span class="font-medium text-white mb-1">Support</span>
+      <a href="mailto:support@dwellir.com" class="hover:text-green-400 transition-colors">support@dwellir.com</a>
+      <a href="https://dashboard.dwellir.com/" target="_blank" rel="noopener noreferrer" class="hover:text-green-400 transition-colors">Dashboard</a>
+    </div>
+  </div>
+  <div class="border-t border-gray-800 py-4 text-center text-xs text-gray-500">
+    &copy; 2025 Dwellir. Monad is a registered trademark of Monad Labs.
+  </div>
+</footer>
+
+</body>
+</html>

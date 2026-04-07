@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentation | Monad Docs</title>
+  <link rel="stylesheet" href="1de98341b7e33ab1.css">
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+
+<header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center gap-4 flex-wrap">
+    <a href="index.html" class="flex items-center gap-2 font-semibold text-gray-900 text-base shrink-0">
+      <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-green-500 text-white font-bold text-sm">M</span>
+      Monad Docs
+    </a>
+    <nav class="flex flex-wrap items-center gap-4 ms-4 text-sm">
+      <a href="index.html" class="text-gray-600 hover:text-gray-900">Home</a>
+      <a href="documentation.html" class="text-green-500 font-semibold">Documentation</a>
+      <a href="develop.html" class="text-gray-600 hover:text-gray-900">Develop</a>
+      <a href="explorer.html" class="text-gray-600 hover:text-gray-900">Explorer</a>
+      <a href="mainnet.html" class="text-gray-600 hover:text-gray-900">Mainnet</a>
+      <a href="ecosystem.html" class="text-gray-600 hover:text-gray-900">Ecosystem</a>
+      <a href="network.html" class="text-gray-600 hover:text-gray-900">Network</a>
+      <a href="testnet.html" class="text-gray-600 hover:text-gray-900">Testnet</a>
+      <a href="node.html" class="text-gray-600 hover:text-gray-900">Node</a>
+      <a href="rpc.html" class="text-gray-600 hover:text-gray-900">RPC</a>
+      <a href="methods.html" class="text-gray-600 hover:text-gray-900">Methods</a>
+    </nav>
+    <div class="ms-auto">
+      <a href="https://dashboard.dwellir.com/" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600 transition-colors">
+        Get API Key
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="flex-1">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="mb-10">
+      <h1 class="text-3xl font-bold text-gray-900 mb-3">Monad Documentation</h1>
+      <p class="text-gray-500 text-lg max-w-3xl">
+        Welcome to the official Monad developer documentation. Monad is a high-performance EVM Layer 1
+        blockchain delivering 10,000+ TPS, 1-second block times, and full Ethereum compatibility. This
+        documentation covers everything you need to build, deploy, and scale applications on Monad.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="md:col-span-2 flex flex-col gap-8">
+
+        <section class="bg-white rounded-xl border border-gray-200 p-6">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Getting Started</h2>
+          <p class="text-gray-600 mb-4 text-sm">
+            Monad is fully EVM-compatible, which means that if you have experience building on Ethereum,
+            you can deploy to Monad with zero code changes. Configure your network settings and you are ready.
+          </p>
+          <ol class="flex flex-col gap-3 text-sm">
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 font-bold shrink-0">1.</span>
+              <span>Configure your wallet or development environment with Monad network settings (Chain ID 143, RPC endpoint from Dwellir).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 font-bold shrink-0">2.</span>
+              <span>Obtain MON tokens (the native gas token) via the official bridge or testnet faucet for development.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 font-bold shrink-0">3.</span>
+              <span>Deploy your contracts using Hardhat, Foundry, or Remix &mdash; all standard Ethereum tools work on Monad.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 font-bold shrink-0">4.</span>
+              <span>Connect your frontend with ethers.js, viem, or web3.js using a Dwellir RPC endpoint.</span>
+            </li>
+          </ol>
+        </section>
+
+        <section class="bg-white rounded-xl border border-gray-200 p-6">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Key Concepts</h2>
+          <div class="flex flex-col gap-5">
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-1">Parallel Execution</h3>
+              <p class="text-sm text-gray-600">
+                Unlike traditional EVM chains that execute transactions sequentially, Monad uses optimistic
+                parallel execution. Transactions are executed concurrently across multiple threads, with
+                conflict detection ensuring correctness. This enables the dramatic throughput increase to
+                10,000+ TPS while maintaining full EVM compatibility and deterministic state transitions.
+              </p>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-1">Local Mempool Design</h3>
+              <p class="text-sm text-gray-600">
+                Monad does not have a global mempool. Each RPC node maintains its own local mempool, which
+                means a pending transaction submitted to one node may not be visible via another node until
+                it is included in a block. Applications should track transactions by hash and poll for
+                confirmation rather than relying on cross-node mempool visibility.
+              </p>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-1">MonadBFT Consensus</h3>
+              <p class="text-sm text-gray-600">
+                MonadBFT is Monad's high-performance Byzantine Fault Tolerant consensus mechanism. It is a
+                pipelined BFT protocol that achieves single-slot finality, enabling the 1-second block time
+                that makes Monad suitable for latency-sensitive applications such as high-frequency trading
+                and gaming where rapid settlement is critical.
+              </p>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-1">EIP-1559 Gas Pricing</h3>
+              <p class="text-sm text-gray-600">
+                Monad uses the EIP-1559 transaction fee mechanism with a base fee that adjusts dynamically
+                based on network demand. Always use <code class="bg-gray-100 px-1 rounded text-xs font-mono">maxFeePerGas</code> and
+                <code class="bg-gray-100 px-1 rounded text-xs font-mono">maxPriorityFeePerGas</code> fields
+                for optimal gas pricing. Legacy transactions are supported but EIP-1559 is strongly recommended.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="bg-white rounded-xl border border-gray-200 p-6">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">Quick Reference</h2>
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="text-left py-2 pr-4 font-semibold text-gray-700">Parameter</th>
+                <th class="text-left py-2 font-semibold text-gray-700">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-4 text-gray-600">Chain ID (Mainnet)</td><td class="py-2 font-mono">143</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-4 text-gray-600">Chain ID (Testnet)</td><td class="py-2 font-mono">10143</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-4 text-gray-600">Native Token</td><td class="py-2 font-mono">MON</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-4 text-gray-600">Block Time</td><td class="py-2 font-mono">~1 second</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-4 text-gray-600">Throughput</td><td class="py-2 font-mono">10,000+ TPS</td></tr>
+              <tr class="border-b border-gray-100"><td class="py-2 pr-4 text-gray-600">Consensus</td><td class="py-2 font-mono">MonadBFT</td></tr>
+              <tr><td class="py-2 pr-4 text-gray-600">Mainnet Launch</td><td class="py-2 font-mono">November 2025</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+      </div>
+
+      <aside class="flex flex-col gap-4">
+        <div class="bg-white rounded-xl border border-gray-200 p-5 sticky top-24">
+          <h3 class="font-semibold text-gray-900 mb-4">Documentation Sections</h3>
+          <nav class="flex flex-col gap-1 text-sm">
+            <a href="develop.html" class="flex items-center gap-2 text-gray-600 hover:text-green-600 transition-colors py-2 border-b border-gray-100">Develop</a>
+            <a href="explorer.html" class="flex items-center gap-2 text-gray-600 hover:text-green-600 transition-colors py-2 border-b border-gray-100">Explorer</a>
+            <a href="mainnet.html" class="flex items-center gap-2 text-gray-600 hover:text-green-600 transition-colors py-2 border-b border-gray-100">Mainnet</a>
+            <a href="ecosystem.html" class="flex items-center gap-2 text-gray-600 hover:text-green-600 transition-colors py-2 border-b border-gray-100">Ecosystem</a>
+            <a href="network.html" class="flex items-center gap-2 text-gray-600 hover:text-green-600 transition-colors py-2 border-b border-gray-100">Network</a>
+            <a href="testnet.html" class="flex items-center gap-2 text-gray-600 hover:text-green-600 transition-colors py-2 border-b border-gray-100">Testnet</a>
+            <a href="node.html" class="flex items-center gap-2 text-gray-600 hover:text-green-600 transition-colors py-2 border-b border-gray-100">Node</a>
+            <a href="rpc.html" class="flex items-center gap-2 text-gray-600 hover:text-green-600 transition-colors py-2 border-b border-gray-100">RPC</a>
+            <a href="methods.html" class="flex items-center gap-2 text-gray-600 hover:text-green-600 transition-colors py-2">Methods</a>
+          </nav>
+          <div class="mt-5 pt-4 border-t border-gray-100">
+            <a href="https://dashboard.dwellir.com/" target="_blank" rel="noopener noreferrer"
+               class="block w-full text-center rounded-lg bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600 transition-colors">
+              Get API Key
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer class="bg-gray-900 text-gray-300">
+  <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
+    <div>
+      <div class="flex items-center gap-2 mb-3">
+        <span class="inline-flex items-center justify-center w-7 h-7 rounded-md bg-green-500 text-white font-bold text-xs">M</span>
+        <span class="font-semibold text-white">Monad Docs</span>
+      </div>
+      <p class="text-sm text-gray-400">High-Performance EVM Layer 1 Documentation<br>Powered by <a href="https://www.dwellir.com/" class="text-green-400 hover:underline" target="_blank" rel="noopener noreferrer">Dwellir</a></p>
+    </div>
+    <div class="flex flex-col gap-1 text-sm">
+      <span class="font-medium text-white mb-1">Quick Links</span>
+      <a href="documentation.html" class="hover:text-green-400 transition-colors">Documentation</a>
+      <a href="develop.html" class="hover:text-green-400 transition-colors">Develop</a>
+      <a href="rpc.html" class="hover:text-green-400 transition-colors">RPC Endpoints</a>
+      <a href="methods.html" class="hover:text-green-400 transition-colors">JSON-RPC Methods</a>
+    </div>
+    <div class="flex flex-col gap-1 text-sm">
+      <span class="font-medium text-white mb-1">Support</span>
+      <a href="mailto:support@dwellir.com" class="hover:text-green-400 transition-colors">support@dwellir.com</a>
+      <a href="https://dashboard.dwellir.com/" target="_blank" rel="noopener noreferrer" class="hover:text-green-400 transition-colors">Dashboard</a>
+    </div>
+  </div>
+  <div class="border-t border-gray-800 py-4 text-center text-xs text-gray-500">
+    &copy; 2025 Dwellir. Monad is a registered trademark of Monad Labs.
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Node | Monad Docs</title>
+  <link rel="stylesheet" href="1de98341b7e33ab1.css">
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+
+<header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center gap-4 flex-wrap">
+    <a href="index.html" class="flex items-center gap-2 font-semibold text-gray-900 text-base shrink-0">
+      <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-green-500 text-white font-bold text-sm">M</span>
+      Monad Docs
+    </a>
+    <nav class="flex flex-wrap items-center gap-4 ms-4 text-sm">
+      <a href="index.html" class="text-gray-600 hover:text-gray-900">Home</a>
+      <a href="documentation.html" class="text-gray-600 hover:text-gray-900">Documentation</a>
+      <a href="develop.html" class="text-gray-600 hover:text-gray-900">Develop</a>
+      <a href="explorer.html" class="text-gray-600 hover:text-gray-900">Explorer</a>
+      <a href="mainnet.html" class="text-gray-600 hover:text-gray-900">Mainnet</a>
+      <a href="ecosystem.html" class="text-gray-600 hover:text-gray-900">Ecosystem</a>
+      <a href="network.html" class="text-gray-600 hover:text-gray-900">Network</a>
+      <a href="testnet.html" class="text-gray-600 hover:text-gray-900">Testnet</a>
+      <a href="node.html" class="text-green-500 font-semibold">Node</a>
+      <a href="rpc.html" class="text-gray-600 hover:text-gray-900">RPC</a>
+      <a href="methods.html" class="text-gray-600 hover:text-gray-900">Methods</a>
+    </nav>
+    <div class="ms-auto">
+      <a href="https://dashboard.dwellir.com/" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600 transition-colors">
+        Get API Key
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="flex-1">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Running a Monad Node</h1>
+    <p class="text-gray-500 text-lg mb-10 max-w-3xl">
+      Operating a Monad node allows you to participate in the network, serve RPC requests, or maintain an
+      independent copy of blockchain history. This guide covers hardware requirements, node types, and setup.
+    </p>
+
+    <div class="flex flex-col gap-8">
+
+      <section class="bg-white rounded-xl border border-gray-200 p-6">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Node Types</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-gray-50 rounded-lg p-5">
+            <h3 class="font-semibold text-gray-900 mb-2">Full Node</h3>
+            <p class="text-sm text-gray-600 mb-3">
+              A full node downloads and validates all blocks from genesis, maintains the current world state,
+              and can serve JSON-RPC requests. It does not store the complete historical state of every block,
+              only the latest state and enough history to support reorgs and recent queries. Full nodes are
+              suitable for most dApp backends and RPC serving use cases.
+            </p>
+            <div class="text-xs text-gray-500 font-semibold uppercase tracking-wide">Recommended for</div>
+            <div class="text-sm text-gray-600">RPC serving, validation, dApp backends</div>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-5">
+            <h3 class="font-semibold text-gray-900 mb-2">Archive Node</h3>
+            <p class="text-sm text-gray-600 mb-3">
+              An archive node stores the complete historical state at every block height. This enables queries
+              like <code class="bg-gray-200 px-1 rounded font-mono text-xs">eth_getBalance</code> at any historical
+              block number. Archive nodes require significantly more storage and compute than full nodes but
+              are necessary for analytics platforms, blockchain indexers, and historical research.
+            </p>
+            <div class="text-xs text-gray-500 font-semibold uppercase tracking-wide">Recommended for</div>
+            <div class="text-sm text-gray-600">Analytics, indexers, historical queries</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl border border-gray-200 p-6">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Hardware Requirements</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+          <div>
+            <div class="font-semibold text-gray-900 mb-3 pb-2 border-b border-gray-100">Full Node</div>
+            <table class="w-full">
+              <tbody>
+                <tr class="border-b border-gray-100"><td class="py-1.5 text-gray-600 pr-4">CPU</td><td class="py-1.5 font-mono">16+ cores (x86-64)</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-1.5 text-gray-600 pr-4">RAM</td><td class="py-1.5 font-mono">64 GB minimum</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-1.5 text-gray-600 pr-4">Storage</td><td class="py-1.5 font-mono">2 TB NVMe SSD</td></tr>
+                <tr><td class="py-1.5 text-gray-600 pr-4">Network</td><td class="py-1.5 font-mono">1 Gbps dedicated</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="font-semibold text-gray-900 mb-3 pb-2 border-b border-gray-100">Archive Node</div>
+            <table class="w-full">
+              <tbody>
+                <tr class="border-b border-gray-100"><td class="py-1.5 text-gray-600 pr-4">CPU</td><td class="py-1.5 font-mono">32+ cores</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-1.5 text-gray-600 pr-4">RAM</td><td class="py-1.5 font-mono">128 GB minimum</td></tr>
+                <tr class="border-b border-gray-100"><td class="py-1.5 text-gray-600 pr-4">Storage</td><td class="py-1.5 font-mono">10+ TB NVMe SSD</td></tr>
+                <tr><td class="py-1.5 text-gray-600 pr-4">Network</td><td class="py-1.5 font-mono">10 Gbps dedicated</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="mt-4 bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
+          <strong>Note:</strong> Monad's parallel execution engine is highly CPU and RAM intensive. Ensure
+          your hardware meets the minimum requirements before attempting to run a production node.
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl border border-gray-200 p-6">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Setup Overview</h2>
+        <p class="text-gray-600 mb-4 text-sm">
+          Refer to the official Monad documentation and GitHub releases for the latest node client binaries
+          and configuration files. The general setup process follows these steps:
+        </p>
+        <ol class="flex flex-col gap-4">
+          <li class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-green-500 text-white flex items-center justify-center font-bold text-xs">1</span>
+            <div>
+              <div class="font-semibold text-gray-900 text-sm">Download the Monad client</div>
+              <div class="text-sm text-gray-600">Obtain the latest release of the Monad node binary from the official GitHub releases page. Verify the checksum before running.</div>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-green-500 text-white flex items-center justify-center font-bold text-xs">2</span>
+            <div>
+              <div class="font-semibold text-gray-900 text-sm">Configure the node</div>
+              <div class="text-sm text-gray-600">Edit the configuration file to set your data directory, network ID (143 for mainnet), RPC listen port, and peer discovery settings including bootnodes.</div>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-green-500 text-white flex items-center justify-center font-bold text-xs">3</span>
+            <div>
+              <div class="font-semibold text-gray-900 text-sm">Start syncing</div>
+              <div class="text-sm text-gray-600">Run the client and allow it to sync from genesis or from a trusted chain snapshot. Initial sync may take several hours depending on hardware and bandwidth.</div>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-green-500 text-white flex items-center justify-center font-bold text-xs">4</span>
+            <div>
+              <div class="font-semibold text-gray-900 text-sm">Enable RPC</div>
+              <div class="text-sm text-gray-600">Enable the HTTP-RPC and/or WebSocket-RPC interface in the configuration file to expose JSON-RPC endpoints for your dApps and tooling.</div>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-green-500 text-white flex items-center justify-center font-bold text-xs">5</span>
+            <div>
+              <div class="font-semibold text-gray-900 text-sm">Monitor</div>
+              <div class="text-sm text-gray-600">Use Prometheus and Grafana with the built-in metrics endpoint to monitor sync status, peer count, memory usage, and block processing rate in real time.</div>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="bg-gray-900 text-gray-300">
+  <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
+    <div>
+      <div class="flex items-center gap-2 mb-3">
+        <span class="inline-flex items-center justify-center w-7 h-7 rounded-md bg-green-500 text-white font-bold text-xs">M</span>
+        <span class="font-semibold text-white">Monad Docs</span>
+      </div>
+      <p class="text-sm text-gray-400">High-Performance EVM Layer 1 Documentation<br>Powered by <a href="https://www.dwellir.com/" class="text-green-400 hover:underline" target="_blank" rel="noopener noreferrer">Dwellir</a></p>
+    </div>
+    <div class="flex flex-col gap-1 text-sm">
+      <span class="font-medium text-white mb-1">Quick Links</span>
+      <a href="documentation.html" class="hover:text-green-400 transition-colors">Documentation</a>
+      <a href="develop.html" class="hover:text-green-400 transition-colors">Develop</a>
+      <a href="rpc.html" class="hover:text-green-400 transition-colors">RPC Endpoints</a>
+      <a href="methods.html" class="hover:text-green-400 transition-colors">JSON-RPC Methods</a>
+    </div>
+    <div class="flex flex-col gap-1 text-sm">
+      <span class="font-medium text-white mb-1">Support</span>
+      <a href="mailto:support@dwellir.com" class="hover:text-green-400 transition-colors">support@dwellir.com</a>
+      <a href="https://dashboard.dwellir.com/" target="_blank" rel="noopener noreferrer" class="hover:text-green-400 transition-colors">Dashboard</a>
+    </div>
+  </div>
+  <div class="border-t border-gray-800 py-4 text-center text-xs text-gray-500">
+    &copy; 2025 Dwellir. Monad is a registered trademark of Monad Labs.
+  </div>
+</footer>
+
+</body>
+</html>

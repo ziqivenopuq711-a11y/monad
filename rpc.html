@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RPC | Monad Docs</title>
+  <link rel="stylesheet" href="1de98341b7e33ab1.css">
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+
+<header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center gap-4 flex-wrap">
+    <a href="index.html" class="flex items-center gap-2 font-semibold text-gray-900 text-base shrink-0">
+      <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-green-500 text-white font-bold text-sm">M</span>
+      Monad Docs
+    </a>
+    <nav class="flex flex-wrap items-center gap-4 ms-4 text-sm">
+      <a href="index.html" class="text-gray-600 hover:text-gray-900">Home</a>
+      <a href="documentation.html" class="text-gray-600 hover:text-gray-900">Documentation</a>
+      <a href="develop.html" class="text-gray-600 hover:text-gray-900">Develop</a>
+      <a href="explorer.html" class="text-gray-600 hover:text-gray-900">Explorer</a>
+      <a href="mainnet.html" class="text-gray-600 hover:text-gray-900">Mainnet</a>
+      <a href="ecosystem.html" class="text-gray-600 hover:text-gray-900">Ecosystem</a>
+      <a href="network.html" class="text-gray-600 hover:text-gray-900">Network</a>
+      <a href="testnet.html" class="text-gray-600 hover:text-gray-900">Testnet</a>
+      <a href="node.html" class="text-gray-600 hover:text-gray-900">Node</a>
+      <a href="rpc.html" class="text-green-500 font-semibold">RPC</a>
+      <a href="methods.html" class="text-gray-600 hover:text-gray-900">Methods</a>
+    </nav>
+    <div class="ms-auto">
+      <a href="https://dashboard.dwellir.com/" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 rounded-lg bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600 transition-colors">
+        Get API Key
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="flex-1">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">RPC Endpoints &amp; Providers</h1>
+    <p class="text-gray-500 text-lg mb-10 max-w-3xl">
+      Connect to Monad using Dwellir's enterprise-grade RPC infrastructure. Available for both mainnet and
+      testnet, with HTTPS and WebSocket transports, API key authentication, and global node coverage.
+    </p>
+
+    <div class="flex flex-col gap-8">
+
+      <section class="bg-white rounded-xl border border-gray-200 p-6">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Available Endpoints</h2>
+        <div class="flex flex-col gap-5">
+          <div>
+            <div class="text-sm font-semibold text-gray-700 mb-2">Mainnet (Chain ID 143)</div>
+            <div class="flex flex-col gap-2">
+              <div class="bg-gray-50 rounded-lg p-3">
+                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">HTTPS</span>
+                <div class="font-mono text-sm mt-0.5 break-all">https://monad-mainnet.dwellir.com/<span class="text-green-600">YOUR_API_KEY</span></div>
+              </div>
+              <div class="bg-gray-50 rounded-lg p-3">
+                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">WebSocket</span>
+                <div class="font-mono text-sm mt-0.5 break-all">wss://monad-mainnet.dwellir.com/<span class="text-green-600">YOUR_API_KEY</span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-sm font-semibold text-gray-700 mb-2">Testnet (Chain ID 10143)</div>
+            <div class="flex flex-col gap-2">
+              <div class="bg-gray-50 rounded-lg p-3">
+                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">HTTPS</span>
+                <div class="font-mono text-sm mt-0.5 break-all">https://monad-testnet.dwellir.com/<span class="text-green-600">YOUR_API_KEY</span></div>
+              </div>
+              <div class="bg-gray-50 rounded-lg p-3">
+                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">WebSocket</span>
+                <div class="font-mono text-sm mt-0.5 break-all">wss://monad-testnet.dwellir.com/<span class="text-green-600">YOUR_API_KEY</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl border border-gray-200 p-6">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Authentication</h2>
+        <p class="text-gray-600 mb-4 text-sm">
+          Dwellir RPC endpoints use API key authentication embedded in the URL path. This approach is
+          compatible with all standard Ethereum libraries without additional configuration &mdash; simply
+          replace <code class="bg-gray-100 px-1 rounded font-mono text-xs">YOUR_API_KEY</code> in the URL.
+        </p>
+        <ol class="flex flex-col gap-2 text-sm mb-4">
+          <li class="flex items-start gap-2">
+            <span class="text-green-500 font-bold shrink-0">1.</span>
+            <span>Sign up or log in at <a href="https://dashboard.dwellir.com/" target="_blank" rel="noopener noreferrer" class="text-green-600 hover:underline">dashboard.dwellir.com</a></span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-500 font-bold shrink-0">2.</span>
+            <span>Create an application and select Monad as the network (mainnet or testnet)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-500 font-bold shrink-0">3.</span>
+            <span>Copy your API key and replace <code class="bg-gray-100 px-1 rounded font-mono text-xs">YOUR_API_KEY</code> in the endpoint URL</span>
+          </li>
+        </ol>
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
+          <strong>Security:</strong> Treat your API key like a password. Do not commit it to source control.
+          Use environment variables (<code class="font-mono bg-yellow-100 px-1 rounded text-xs">process.env.DWELLIR_API_KEY</code>) in your application code.
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl border border-gray-200 p-6">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Best Practices</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-gray-50 rounded-lg p-4 text-sm">
+            <h3 class="font-semibold text-gray-900 mb-2">Batch Requests</h3>
+            <p class="text-gray-600 mb-3">Combine multiple RPC calls into a single HTTP request to reduce latency and improve throughput for bulk data fetching operations.</p>
+            <pre class="bg-gray-900 text-green-300 rounded p-2 text-xs overflow-x-auto"><code>// ethers.js v6 — parallel calls
+const [balance, block] = await Promise.all([
+  provider.getBalance(address),
+  provider.getBlockNumber(),
+]);</code></pre>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-4 text-sm">
+            <h3 class="font-semibold text-gray-900 mb-2">Connection Pooling</h3>
+            <p class="text-gray-600 mb-3">Reuse a single provider instance across your application instead of creating a new connection per request to minimize overhead.</p>
+            <pre class="bg-gray-900 text-green-300 rounded p-2 text-xs overflow-x-auto"><code>// Create once, export and reuse
+const provider = new ethers.JsonRpcProvider(
+  process.env.DWELLIR_API_KEY
+);
+export default provider;</code></pre>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-4 text-sm">
+            <h3 class="font-semibold text-gray-900 mb-2">Caching</h3>
+            <p class="text-gray-600 mb-3">Cache responses for immutable data such as block by hash and transaction receipts to avoid redundant RPC round-trips.</p>
+            <pre class="bg-gray-900 text-green-300 rounded p-2 text-xs overflow-x-auto"><code>// Receipts are immutable once confirmed
+const receipt = cache.get(txHash)
+  ?? await provider.getTransactionReceipt(txHash);
+cache.set(txHash, receipt);</code></pre>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-4 text-sm">
+            <h3 class="font-semibold text-gray-900 mb-2">Retry with Backoff</h3>
+            <p class="text-gray-600 mb-3">Implement exponential backoff for transient failures to build resilient production applications that handle network hiccups gracefully.</p>
+            <pre class="bg-gray-900 text-green-300 rounded p-2 text-xs overflow-x-auto"><code>async function retry(fn, retries = 3) {
+  for (let i = 0; i &lt; retries; i++) {
+    try { return await fn(); }
+    catch { await sleep(2 ** i * 100); }
+  }
+  throw new Error("Max retries exceeded");
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="bg-gray-900 text-gray-300">
+  <div class="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row gap-6 justify-between items-start">
+    <div>
+      <div class="flex items-center gap-2 mb-3">
+        <span class="inline-flex items-center justify-center w-7 h-7 rounded-md bg-green-500 text-white font-bold text-xs">M</span>
+        <span class="font-semibold text-white">Monad Docs</span>
+      </div>
+      <p class="text-sm text-gray-400">High-Performance EVM Layer 1 Documentation<br>Powered by <a href="https://www.dwellir.com/" class="text-green-400 hover:underline" target="_blank" rel="noopener noreferrer">Dwellir</a></p>
+    </div>
+    <div class="flex flex-col gap-1 text-sm">
+      <span class="font-medium text-white mb-1">Quick Links</span>
+      <a href="documentation.html" class="hover:text-green-400 transition-colors">Documentation</a>
+      <a href="develop.html" class="hover:text-green-400 transition-colors">Develop</a>
+      <a href="rpc.html" class="hover:text-green-400 transition-colors">RPC Endpoints</a>
+      <a href="methods.html" class="hover:text-green-400 transition-colors">JSON-RPC Methods</a>
+    </div>
+    <div class="flex flex-col gap-1 text-sm">
+      <span class="font-medium text-white mb-1">Support</span>
+      <a href="mailto:support@dwellir.com" class="hover:text-green-400 transition-colors">support@dwellir.com</a>
+      <a href="https://dashboard.dwellir.com/" target="_blank" rel="noopener noreferrer" class="hover:text-green-400 transition-colors">Dashboard</a>
+    </div>
+  </div>
+  <div class="border-t border-gray-800 py-4 text-center text-xs text-gray-500">
+    &copy; 2025 Dwellir. Monad is a registered trademark of Monad Labs.
+  </div>
+</footer>
+
+</body>
+</html>
